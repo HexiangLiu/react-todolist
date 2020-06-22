@@ -4,6 +4,7 @@ import './App.scss';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
 
+//showing vs-code github setup
 export default class App extends Component {
   state = { items: [] };
 
