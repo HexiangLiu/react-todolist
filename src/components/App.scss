@@ -1,3 +1,21 @@
+@mixin large {
+  @media only screen and (max-width: 75em) {
+    width: 70%;
+  }
+}
+
+@mixin medium {
+  @media only screen and (max-width: 56.25em) {
+    width: 80%;
+  }
+}
+
+@mixin small {
+  @media only screen and (max-width: 31.25em) {
+    width: 100%;
+  }
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -13,11 +31,18 @@
 .input__container {
   width: 50%;
   animation: moveLeftIn 2s 0.3s backwards;
+
+  @include large;
+  @include medium;
+  @include small;
 }
 
 .list__container {
   width: 50%;
   animation: moveRightIn 2s 0.3s backwards;
+  @include large;
+  @include medium;
+  @include small;
 }
 
 .btn {

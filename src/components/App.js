@@ -48,7 +48,6 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(this.state.items);
     return (
       <main className="main">
         <div className="input__container">
