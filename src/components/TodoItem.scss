@@ -1,12 +1,23 @@
 .item-box {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(182, 182, 182);
+  border: 1px solid rgb(182, 182, 182);
+
   font-size: 1.6rem;
+  padding: 1rem 2rem;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
 
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
+}
+
+.item__text {
+  text-transform: capitalize;
 }
 
 .item__icon {

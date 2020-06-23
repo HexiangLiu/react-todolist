@@ -13,9 +13,11 @@ export default class TodoList extends Component {
               item={item}
               key={item.id}
               deleteItem={this.props.deleteItem}
+              editItem={this.props.editItem}
             />
           );
         })}
+
         <div>
           <button
             type="button"

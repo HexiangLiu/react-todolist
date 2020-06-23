@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import './App.scss';
 import TodoList from './TodoList';
@@ -6,11 +7,20 @@ import TodoInput from './TodoInput';
 
 //showing vs-code github setup
 export default class App extends Component {
-  state = { items: [] };
+  state = { items: [], editItem: false, item: '', id: uuidv4() };
 
-  addItem = (item) => {
-    this.setState((state) => {
-      return item.content ? { items: [...state.items, item] } : null;
+  handleInput = (e) => {
+    this.setState({ item: e.target.value });
+  };
+
+  addItem = () => {
+    this.setState({
+      items: [
+        ...this.state.items,
+        { title: this.state.item, id: this.state.id },
+      ],
+      item: '',
+      id: uuidv4(),
     });
   };
 
@@ -26,12 +36,29 @@ export default class App extends Component {
     this.setState({ items: [] });
   };
 
+  editItem = (id) => {
+    const filteredItem = this.state.items.filter((item) => item.id !== id);
+    const selectedItem = this.state.items.find((item) => item.id === id);
+    this.setState({
+      items: filteredItem,
+      editItem: true,
+      item: selectedItem.title,
+      id: id,
+    });
+  };
+
   render() {
+    console.log(this.state.items);
     return (
       <main className="main">
         <div className="input__container">
           <h2 className="title">Todo Input</h2>
-          <TodoInput addItem={this.addItem} />
+          <TodoInput
+            handleInput={this.handleInput}
+            addItem={this.addItem}
+            editItem={this.state.editItem}
+            item={this.state.item}
+          />
         </div>
         <div className="list__container">
           <h2 className="title">Todo List</h2>
@@ -39,6 +66,7 @@ export default class App extends Component {
             items={this.state.items}
             deleteItem={this.deleteItem}
             clearItems={this.clearItems}
+            editItem={this.editItem}
           />
         </div>
       </main>

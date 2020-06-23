@@ -12,10 +12,12 @@
 
 .input__container {
   width: 50%;
+  animation: moveLeftIn 2s 0.3s backwards;
 }
 
 .list__container {
   width: 50%;
+  animation: moveRightIn 2s 0.3s backwards;
 }
 
 .btn {
@@ -27,6 +29,11 @@
   transition: all 0.2s;
   font-size: inherit;
   padding: 1rem 0;
+  text-transform: uppercase;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 
   &:focus {
     outline: none;
@@ -42,5 +49,43 @@
 
   &--red {
     background-color: red;
+  }
+
+  &--green {
+    background-color: green;
+  }
+}
+
+@keyframes moveLeftIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveRightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
