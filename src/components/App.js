@@ -21,6 +21,7 @@ export default class App extends Component {
       ],
       item: '',
       id: uuidv4(),
+      editItem: this.state.editItem && false,
     });
   };
 
@@ -39,6 +40,8 @@ export default class App extends Component {
   editItem = (id) => {
     const filteredItem = this.state.items.filter((item) => item.id !== id);
     const selectedItem = this.state.items.find((item) => item.id === id);
+    const editState = !this.state.editItem;
+    console.log(editState);
     this.setState({
       items: filteredItem,
       editItem: true,
