@@ -5,9 +5,22 @@ import './App.scss';
 import TodoList from './TodoList';
 import TodoInput from './TodoInput';
 
-//showing vs-code github setup
+const items = localStorage.getItem('items')
+  ? JSON.parse(localStorage.getItem('items'))
+  : [];
+
 export default class App extends Component {
   state = { items: [], editItem: false, item: '', id: uuidv4() };
+
+  componentDidMount() {
+    this.setState({ items: items });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.items !== this.state.items) {
+      localStorage.setItem('items', JSON.stringify(this.state.items));
+    }
+  }
 
   handleInput = (e) => {
     this.setState({ item: e.target.value });
